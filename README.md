@@ -9,7 +9,7 @@
 <h2>Usage</h2>
 1. Start the application: npm run server
 
-2. Access the application in a web browser at http://localhost:3000.
+2. Access the application in a web browser at http://localhost:9090.
 
 <h2>User Routes</h2>
 GET /user: Retrieves all users.
