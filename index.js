@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 const{authenticate} = require('./middleware/authentication')
 const {userRouter} = require('./routes/user.routes')
 const {blogRouter} = require('./routes/blog.routes')
@@ -16,7 +17,7 @@ app.use(authenticate)
 app.use('/blog',blogRouter)
 
 
-app.listen(9090, async ()=>{
+app.listen(process.env.PORT, async ()=>{
     await connection
-    console.log("Running at port 9090")
+    console.log("Running at port",process.env.PORT)
 })
