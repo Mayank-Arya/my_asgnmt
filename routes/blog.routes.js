@@ -23,7 +23,7 @@ blogRouter.get("/",authorize(["User"]), async (req,res)=>{
 
 
 
-blogRouter.post("/addblog",authorize(["User","Moderator"]),async(req,res)=>{
+blogRouter.post("/addblog",authorize(["User","Admin"]),async(req,res)=>{
     const token = req.headers.authorization
     const {title,body,author} = req.body
     const decoded = jwt.verify(token,process.env.key)
@@ -40,8 +40,8 @@ blogRouter.post("/addblog",authorize(["User","Moderator"]),async(req,res)=>{
 })
 
 
-blogRouter.patch("/Update/:id",authorize(["User","Moderator"]),async(req,res)=>{
-    const load=req.body;
+blogRouter.patch("/Update/:id",authorize(["User","Admin"]),async(req,res)=>{
+    const load=req.body
     const userId = req.userId
     const id=req.params.id
 
@@ -58,7 +58,7 @@ blogRouter.patch("/Update/:id",authorize(["User","Moderator"]),async(req,res)=>{
     }
 })
 
-blogRouter.delete("/deleteblog/:id",authorize(["Moderator"]),async(req,res)=>{
+blogRouter.delete("/deleteblog/:id",authorize(["Admin"]),async(req,res)=>{
    const id = req.params.id
    try{
     const deleteBlog = await blogModel.findByIdAndDelete({id})
